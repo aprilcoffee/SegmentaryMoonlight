@@ -2,20 +2,20 @@ import RPi.GPIO as GPIO
 import time
 
 #GPIO declarations
-segmentClock1 = 23
-segmentLatch1 = 24
+segmentLatch1 = 23
+segmentClock1 = 24
 segmentData1 = 25
 
-segmentClock2 = 17
-segmentLatch2 = 27
+segmentLatch2 = 17
+segmentClock2 = 27
 segmentData2 = 22
 
-segmentClock3 = 5
-segmentLatch3 = 6
+segmentLatch3 = 5
+segmentClock3 = 6
 segmentData3 = 13
 
-segmentClock4 = 16
-segmentLatch4 = 20
+segmentLatch4 = 16
+segmentClock4 = 20
 segmentData4 = 21
 
 
