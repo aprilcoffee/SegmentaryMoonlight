@@ -2,23 +2,25 @@ import RPi.GPIO as GPIO
 import time
 
 #GPIO declarations
+#RightUp - A
 segmentLatch1 = 23
 segmentClock1 = 24
 segmentData1 = 25
 
+#LeftUp - B
 segmentLatch2 = 17
 segmentClock2 = 27
 segmentData2 = 22
 
+#RightDown - C
 segmentLatch3 = 5
 segmentClock3 = 6
 segmentData3 = 13
 
+#LeftDown - D
 segmentLatch4 = 16
 segmentClock4 = 20
 segmentData4 = 21
-
-
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
