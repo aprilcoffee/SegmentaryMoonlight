@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
+
 #GPIO declarations
 #RightUp - A
 segmentLatch1 = 23
