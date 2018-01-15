@@ -13,9 +13,9 @@ segmentClock2 = 27
 segmentData2 = 22
 
 #RightDown - C
-segmentLatch3 = 5
-segmentClock3 = 6
-segmentData3 = 13
+segmentLatch3 = 13
+segmentClock3 = 19
+segmentData3 = 26
 
 #LeftDown - D
 segmentLatch4 = 16
@@ -110,7 +110,7 @@ def showNum(value,clock,data,latch):
 	numberHere = value
 	for i in range(0,2):
 		reminder = numberHere%10
-		postNumber(reminder,1,clock,data)
+		postNumber(reminder+showNumber,showNumber%2,clock,data)
 		numberHere/=10
 	GPIO.output(latch,GPIO.LOW)
 	GPIO.output(latch,GPIO.HIGH)
@@ -123,7 +123,7 @@ while True:
 	showNum(showNumber,segmentClock2,segmentData2,segmentLatch2)
 	showNum(showNumber,segmentClock3,segmentData3,segmentLatch3)
 	showNum(showNumber,segmentClock4,segmentData4,segmentLatch4)
-	print(showNumber)
+	#print(showNumber)
 
 	time.sleep(0.1)
 	showNumber+=1
