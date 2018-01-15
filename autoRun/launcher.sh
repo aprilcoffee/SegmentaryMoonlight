@@ -4,5 +4,5 @@
 
 cd /
 cd /home/pi/Desktop/SegmentaryMoonlight/source
-sudo python test.py
+sudo python light.py
 cd /
