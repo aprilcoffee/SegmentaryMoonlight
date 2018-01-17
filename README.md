@@ -1,14 +1,12 @@
 # SegmentaryMoonlight-
-SegmentaryMoonlight Public art in Tainan Yuejin Lantern Festival.
+SegmentaryMoonlight, Public art exhibit in "2018 Tainan Yuejin Lantern Festival".
 
-2018  Yuejin Lantern Festival.
+This python3 code is base on RaspberryPi3 with GPIO
 
-pls update with 
+
+pls update for RTC
 https://gary-dalton.github.io/RaspberryPi-projects/rpi_RTCds3231
-for RTC
 
-auto run Python by following this instuction
+Following this instuction for auto-run on startup 
 http://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/
 
-to kill job 
-https://unix.stackexchange.com/questions/104821/how-to-terminate-a-background-process
