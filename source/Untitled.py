@@ -257,7 +257,7 @@ while True:
 
         # Showing Time
         reset(10,0)
-        for i in range(0, 150):
+        for i in range(0, 200):
             date_time = datetime.datetime.now()
             dateNow = date_time.date()
             timeNow = date_time.time()
