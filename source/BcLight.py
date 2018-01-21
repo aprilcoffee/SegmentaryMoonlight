@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import datetime
 from random import randint
-
+import sc
 lFL1 = [[-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [3, 4], [3, 4, 5, 13], [3, 4, 5, 6, 13], [1, 2, 3, 4, 5, 6, 13], [1, 2, 3, 4, 5, 6, 12, 13], [0, 1,
                                                                                                                                                             2, 3, 4, 5, 6, 7, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]  # A
 lFL2 = [[10], [9, 10], [7, 9, 10, 11], [7, 8, 9, 10, 11], [0, 7, 8, 9, 10, 11, 12], [0, 1, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 3, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [
@@ -202,7 +202,6 @@ def showNumLtoR(sec, row, count, clock, data, latch, mode):
                 postNumber(10, 1, clock, data)
     GPIO.output(latch, GPIO.HIGH)
 
-
 def leftToRight(mode):
     if mode == 0:
         randTime = 5
@@ -219,13 +218,10 @@ def leftToRight(mode):
             showNumLtoR(4, lFL4[row], randint(
                 0, 9), segmentClock4, segmentData4, segmentLatch4, mode)
             time.sleep(0.05)
-
-
 x = 0
 showNumber = 0
-reset(10,0)
 
 while True:
-    leftToRight(0)
-
+    sc.showLeftToRight()
+        
 GPIO.cleanup()

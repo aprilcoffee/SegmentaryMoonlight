@@ -42,40 +42,42 @@ segmentLatch4 = 16
 segmentClock4 = 20
 segmentData4 = 21
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
 
-GPIO.setup(segmentClock1, GPIO.OUT)
-GPIO.setup(segmentLatch1, GPIO.OUT)
-GPIO.setup(segmentData1, GPIO.OUT)
+def init():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
 
-GPIO.output(segmentClock1, GPIO.LOW)
-GPIO.output(segmentLatch1, GPIO.LOW)
-GPIO.output(segmentData1, GPIO.LOW)
+    GPIO.setup(segmentClock1, GPIO.OUT)
+    GPIO.setup(segmentLatch1, GPIO.OUT)
+    GPIO.setup(segmentData1, GPIO.OUT)
 
-GPIO.setup(segmentClock2, GPIO.OUT)
-GPIO.setup(segmentLatch2, GPIO.OUT)
-GPIO.setup(segmentData2, GPIO.OUT)
+    GPIO.output(segmentClock1, GPIO.LOW)
+    GPIO.output(segmentLatch1, GPIO.LOW)
+    GPIO.output(segmentData1, GPIO.LOW)
 
-GPIO.output(segmentClock2, GPIO.LOW)
-GPIO.output(segmentLatch2, GPIO.LOW)
-GPIO.output(segmentData2, GPIO.LOW)
+    GPIO.setup(segmentClock2, GPIO.OUT)
+    GPIO.setup(segmentLatch2, GPIO.OUT)
+    GPIO.setup(segmentData2, GPIO.OUT)
 
-GPIO.setup(segmentClock3, GPIO.OUT)
-GPIO.setup(segmentLatch3, GPIO.OUT)
-GPIO.setup(segmentData3, GPIO.OUT)
+    GPIO.output(segmentClock2, GPIO.LOW)
+    GPIO.output(segmentLatch2, GPIO.LOW)
+    GPIO.output(segmentData2, GPIO.LOW)
 
-GPIO.output(segmentClock3, GPIO.LOW)
-GPIO.output(segmentLatch3, GPIO.LOW)
-GPIO.output(segmentData3, GPIO.LOW)
+    GPIO.setup(segmentClock3, GPIO.OUT)
+    GPIO.setup(segmentLatch3, GPIO.OUT)
+    GPIO.setup(segmentData3, GPIO.OUT)
 
-GPIO.setup(segmentClock4, GPIO.OUT)
-GPIO.setup(segmentLatch4, GPIO.OUT)
-GPIO.setup(segmentData4, GPIO.OUT)
+    GPIO.output(segmentClock3, GPIO.LOW)
+    GPIO.output(segmentLatch3, GPIO.LOW)
+    GPIO.output(segmentData3, GPIO.LOW)
 
-GPIO.output(segmentClock4, GPIO.LOW)
-GPIO.output(segmentLatch4, GPIO.LOW)
-GPIO.output(segmentData4, GPIO.LOW)
+    GPIO.setup(segmentClock4, GPIO.OUT)
+    GPIO.setup(segmentLatch4, GPIO.OUT)
+    GPIO.setup(segmentData4, GPIO.OUT)
+
+    GPIO.output(segmentClock4, GPIO.LOW)
+    GPIO.output(segmentLatch4, GPIO.LOW)
+    GPIO.output(segmentData4, GPIO.LOW)
 
 
 def postNumber(number, decimal, clock, data):
@@ -175,57 +177,131 @@ def blowShow(value, decimal, numbersToRun, clock, data, latch):
     time.sleep(0.05)
 
 
-def showNumLtoR(sec, row, count, clock, data, latch, mode):
+def showNumLtoR(sec,lastRow, row, count, clock, data, latch, mode):
     GPIO.output(latch, GPIO.LOW)
     for i in range(0, 14):
         check = -1
         for element in row:
             if element == i:
                 check = 1
+        for element in lastRow:
+            if element == i:
+                check = 2
 
         if mode == 0:
             if check == 1:
-                postNumber(count, 1, clock, data)
+                postNumber(count, 0, clock, data)
+            elif check ==2:
+                postNumber(8,1,clock,data)
             else:
                 postNumber(10, 0, clock, data)
 
         elif mode == 1:
-            if check == 1:
-                postNumber(10, 1, clock, data)
+            if check == 1 :
+                postNumber(count, 1, clock, data)
+            elif check==2:
+                postNumber(10,1,clock,data)
             else:
                 postNumber(8, 1, clock, data)
 
         elif mode == 2:
-            if check == 1:
+            if check == 2:
                 postNumber(10, 0, clock, data)
             else:
-                postNumber(10, 1, clock, data)
+                postNumber(10, randint(0,2), clock, data)
+        elif mode == 3:
+            if check == 1:
+                postNumber(10,1,clock,data)
+            else:
+                postNumber(8,1,clock,data)
+        elif mode ==4:
+            if check == 1:
+                postNumber(10,0,clock,data)
+            else :
+                postNumber(10,1,clock,data)
     GPIO.output(latch, GPIO.HIGH)
-
 
 def leftToRight(mode):
     if mode == 0:
-        randTime = 5
-    else:
+        randTime = 20
+    elif mode==1:
+        randTime = 20
+    elif mode == 3:
         randTime = 1
-    for row in range(0, 18):
+    elif mode == 4:
+        randTime = 2
+    else:
+        randTime = 8
+        
+    for row in range(1, 18):
         for now in range(0, randTime):
-            showNumLtoR(1, lFL1[row], randint(
-                0, 9), segmentClock1, segmentData1, segmentLatch1, mode)
-            showNumLtoR(2, lFL2[row], randint(
-                0, 9), segmentClock2, segmentData2, segmentLatch2, mode)
-            showNumLtoR(3, lFL3[row], randint(
-                0, 9), segmentClock3, segmentData3, segmentLatch3, mode)
-            showNumLtoR(4, lFL4[row], randint(
-                0, 9), segmentClock4, segmentData4, segmentLatch4, mode)
-            time.sleep(0.05)
+            if row > 0:
+                showNumLtoR(1,lFL1[row-1],BlFL1[row], randint(0, 9), segmentClock1, segmentData1, segmentLatch1, mode)
+                showNumLtoR(2,lFL2[row-1],BlFL2[row], randint(0, 9), segmentClock2, segmentData2, segmentLatch2, mode)
+                showNumLtoR(3,lFL3[row-1],BlFL3[row], randint(0, 9), segmentClock3, segmentData3, segmentLatch3, mode)
+                showNumLtoR(4,lFL4[row-1],BlFL4[row], randint(0, 9), segmentClock4, segmentData4, segmentLatch4, mode)
+                time.sleep(0.07)
 
 
-x = 0
-showNumber = 0
-reset(10,0)
+def starShine(duration):
+    for i in range(0, duration*10):
+        showNumber = 10
+        showNumWithLatch(showNumber, randint(0, 2), 4,
+                segmentClock1, segmentData1, segmentLatch1)
+        showNumWithLatch(showNumber, randint(0, 2), 4,
+                segmentClock2, segmentData2, segmentLatch2)
+        showNumWithLatch(showNumber, randint(0, 2), 4,
+                segmentClock3, segmentData3, segmentLatch3)
+        showNumWithLatch(showNumber, randint(0, 2), 4,
+                segmentClock4, segmentData4, segmentLatch4)
+        time.sleep(0.1)
 
-while True:
-    leftToRight(0)
+def showTime():
+    date_time = datetime.datetime.now()
+    dateNow = date_time.date()
+    timeNow = date_time.time()
 
-GPIO.cleanup()
+    GPIO.output(segmentLatch2, GPIO.LOW)
+    showNum(int(timeNow.hour / 10), 0, 1, segmentClock2,segmentData2, segmentLatch2)
+    showNum(10, 0, 4, segmentClock2, segmentData2, segmentLatch2)
+    showNum(timeNow.hour % 10, 1, 1, segmentClock2,segmentData2, segmentLatch2)
+    showNum(10, 0, 8, segmentClock2, segmentData2, segmentLatch2)
+    GPIO.output(segmentLatch2, GPIO.HIGH)
+
+    GPIO.output(segmentLatch1, GPIO.LOW)
+    showNum(10, 0, 6, segmentClock1, segmentData1, segmentLatch1)
+    showNum(int(timeNow.minute / 10), 0, 1, segmentClock1,segmentData1, segmentLatch1)
+    showNum(timeNow.minute % 10, 1, 1, segmentClock1,segmentData1, segmentLatch1)
+    showNum(10, 0, 6, segmentClock1, segmentData1, segmentLatch1)
+    GPIO.output(segmentLatch1, GPIO.HIGH)
+
+    GPIO.output(segmentLatch4, GPIO.LOW)
+    showNum(10, 0, 10, segmentClock4, segmentData4, segmentLatch4)
+    showNum(int(timeNow.second/10), 0, 1, segmentClock4,segmentData4,segmentLatch4)
+    showNum(10, 0, 2, segmentClock4, segmentData4, segmentLatch4)
+    showNum(timeNow.second%10, 1, 1, segmentClock4,segmentData4, segmentLatch4)
+    GPIO.output(segmentLatch4, GPIO.HIGH)
+
+    GPIO.output(segmentLatch3, GPIO.LOW)
+    showNum(10, 0, 10, segmentClock3, segmentData3, segmentLatch3)
+    showNum(int(timeNow.microsecond/100)%10, 0, 1, segmentClock3, segmentData3, segmentLatch3)
+    showNum(timeNow.microsecond%10, 1, 1, segmentClock3, segmentData3, segmentLatch3)
+    showNum(10, 0, 2, segmentClock3, segmentData3, segmentLatch3)
+    GPIO.output(segmentLatch3, GPIO.HIGH)
+
+    time.sleep(0.1)
+
+def showLeftToRight():
+    for i in range(0,3):
+        leftToRight(0)  # 0 light to right
+        reset(8, 1)
+        for k in range(0,5):
+            leftToRight(3)
+        leftToRight(1)  # 1 dark to right
+        for k in range(0,5):
+            leftToRight(4)
+        starShine(15)
+        leftToRight(2)  # 2 lights off
+        reset(10,0)
+        time.sleep(3)
+
