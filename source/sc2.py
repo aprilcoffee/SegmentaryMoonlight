@@ -143,11 +143,11 @@ def showNumWithLatch(value, decimal, numbersToRun, clock, data, latch):
 
 
 def reset(num, decimal):
-    showNumWithLatch(num, decimal, 14, segmentClock1, segmentData1, segmentLatch1)
-    showNumWithLatch(num, decimal, 14, segmentClock2, segmentData2, segmentLatch2)
-    showNumWithLatch(num, decimal, 14, segmentClock3, segmentData3, segmentLatch3)
-    showNumWithLatch(num, decimal, 14, segmentClock4, segmentData4, segmentLatch4)
-    showNumWithLatch(num, decimal, 14, segmentClock5, segmentData5, segmentLatch5)
+    showNumWithLatch(num, decimal, 12, segmentClock1, segmentData1, segmentLatch1)
+    showNumWithLatch(num, decimal, 12, segmentClock2, segmentData2, segmentLatch2)
+    showNumWithLatch(num, decimal, 13, segmentClock3, segmentData3, segmentLatch3)
+    showNumWithLatch(num, decimal, 13, segmentClock4, segmentData4, segmentLatch4)
+    showNumWithLatch(num, decimal, 16, segmentClock5, segmentData5, segmentLatch5)
 
 
 def blowShow(value, decimal, numbersToRun, clock, data, latch):
@@ -233,7 +233,7 @@ def leftToRight(mode):
                 showNumLtoR(2,lFL2[row-1],BlFL2[row], randint(0, 9), segmentClock2, segmentData2, segmentLatch2, mode)
                 showNumLtoR(3,lFL3[row-1],BlFL3[row], randint(0, 9), segmentClock3, segmentData3, segmentLatch3, mode)
                 showNumLtoR(4,lFL4[row-1],BlFL4[row], randint(0, 9), segmentClock4, segmentData4, segmentLatch4, mode)
-                time.sleep(1)
+                time.sleep(0.01)
 
 
 def starShine(duration):
