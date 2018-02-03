@@ -22,7 +22,6 @@ segmentData3 = 26
 segmentLatch4 = 16
 segmentClock4 = 20
 segmentData4 = 21
-
 #Clock - E
 segmentLatch5 = 5
 segmentClock5 = 6
@@ -147,8 +146,7 @@ def reset(num, decimal):
     showNumWithLatch(num, decimal, 12, segmentClock2, segmentData2, segmentLatch2)
     showNumWithLatch(num, decimal, 13, segmentClock3, segmentData3, segmentLatch3)
     showNumWithLatch(num, decimal, 13, segmentClock4, segmentData4, segmentLatch4)
-    showNumWithLatch(num, decimal, 6, segmentClock5, segmentData5, segmentLatch5)
-
+    #showNumWithLatch(num, decimal, 6, segmentClock5, segmentData5, segmentLatch5)
 
 def blowShow(value, decimal, numbersToRun, clock, data, latch):
     # reset(10,0)
@@ -247,23 +245,30 @@ def starShine(duration):
                 segmentClock3, segmentData3, segmentLatch3)
         showNumWithLatch(showNumber, randint(0, 2), 4,
                 segmentClock4, segmentData4, segmentLatch4)
+        showTime()
         time.sleep(0.1)
 
 def showTime():
     date_time = datetime.datetime.now()
     dateNow = date_time.date()
     timeNow = date_time.time()
+    
+    if timeNow.second % 2==0:
+        de = 1
+    else:
+        de = 0
+
 
     GPIO.output(segmentLatch5, GPIO.LOW)
-    showNum(timeNow.second%10, 1, 1, segmentClock5,segmentData5, segmentLatch5)
-    showNum(int(timeNow.second/10), 0, 1, segmentClock5,segmentData5,segmentLatch5)
+    showNum(timeNow.second%10, de, 1, segmentClock5,segmentData5, segmentLatch5)
+    showNum(int(timeNow.second/10), de, 1, segmentClock5,segmentData5,segmentLatch5)
 
-    showNum(timeNow.minute % 10, 1, 1, segmentClock5,segmentData5, segmentLatch5)
-    showNum(int(timeNow.minute / 10), 0, 1, segmentClock5,segmentData5, segmentLatch5)
+    showNum(timeNow.minute % 10, de, 1, segmentClock5,segmentData5, segmentLatch5)
+    showNum(int(timeNow.minute / 10), de, 1, segmentClock5,segmentData5, segmentLatch5)
     
-    showNum(int(timeNow.hour / 10), 0, 1, segmentClock5,segmentData5, segmentLatch5)
-    showNum(timeNow.hour % 10, 1, 1, segmentClock5,segmentData5, segmentLatch5)
-
+    showNum(timeNow.hour % 10,de, 1, segmentClock5,segmentData5, segmentLatch5)
+    showNum(int(timeNow.hour / 10),de, 1, segmentClock5,segmentData5, segmentLatch5)
+    
     GPIO.output(segmentLatch5, GPIO.HIGH)
     time.sleep(0.01)
 

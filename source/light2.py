@@ -23,7 +23,6 @@ while True:
     sc2.reset(i,1)
     i = i+1
     i = i%10
-    time.sleep(0.5)
     sc2.starShine(10)
     """
     data = conn.recv(1024)
@@ -37,7 +36,7 @@ while True:
     time.sleep(0.3)
     """
     #sc2.showTime()
-    
+    #time.sleep(0.5)
     #sc.showLeftToRight()
     
 conn.close()
