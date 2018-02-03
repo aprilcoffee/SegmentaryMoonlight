@@ -1,14 +1,13 @@
 import RPi.GPIO as GPIO
 import time
 import datetime
+import random
 from random import randint
 
-lFL1 = [[-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [3, 4], [3, 4, 5, 13], [3, 4, 5, 6, 13], [1, 2, 3, 4, 5, 6, 13], [1, 2, 3, 4, 5, 6, 12, 13], [0, 1,
-                                                                                                                                                            2, 3, 4, 5, 6, 7, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]  # A
+lFL1 = [[-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [3, 4], [3, 4, 5, 13], [3, 4, 5, 6, 13], [1, 2, 3, 4, 5, 6, 13], [1, 2, 3, 4, 5, 6, 12, 13], [0, 1,2, 3, 4, 5, 6, 7, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]  # A
 lFL2 = [[10], [9, 10], [7, 9, 10, 11], [7, 8, 9, 10, 11], [0, 7, 8, 9, 10, 11, 12], [0, 1, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 3, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]
-lFL3 = [[-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [11], [3, 4, 11], [2, 3, 4, 6, 11], [2, 3, 4, 5, 6, 11, 13], [1, 2, 3, 4, 5, 6, 11, 12, 13], [0, 1, 2, 3, 4,
-                                                                                                                                                            5, 6, 7, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]  # C
+lFL3 = [[-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [-1], [11], [3, 4, 11], [2, 3, 4, 6, 11], [2, 3, 4, 5, 6, 11, 13], [1, 2, 3, 4, 5, 6, 11, 12, 13], [0, 1, 2, 3, 4,5, 6, 7, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]  # C
 lFL4 = [[-1], [10, 11], [9, 10, 11], [7, 8, 9, 10, 11, 12], [7, 8, 9, 10, 11, 12, 13], [2, 6, 7, 8, 9, 10, 11, 12, 13], [0, 2, 6, 7, 8, 9, 10, 11, 12, 13], [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]  # D
 
@@ -94,7 +93,6 @@ def postNumber(number, decimal, clock, data):
     f = 1 << 1
     g = 1 << 2
     dp = 1 << 7
-
     segments = 0
     if number == 1:
         segments = b | c
@@ -116,7 +114,13 @@ def postNumber(number, decimal, clock, data):
         segments = a | b | c | d | f | g
     elif number == 0:
         segments = a | b | c | d | e | f
-    else:
+    elif number > 10:
+        s = random.sample(range(0,9),number%10)
+        for i in s:
+            print(s)
+            flag = 1 << i
+            segments = segments | flag
+    elif number == 10:
         segments = 0
     if(decimal):
         segments |= dp
@@ -223,7 +227,7 @@ def showNumLtoR(sec,lastRow, row, count, clock, data, latch, mode):
 
 def leftToRight(mode):
     if mode == 0:
-        randTime = 20
+        randTime = 32
     elif mode==1:
         randTime = 20
     elif mode == 3:
@@ -236,10 +240,10 @@ def leftToRight(mode):
     for row in range(1, 18):
         for now in range(0, randTime):
             if row > 0:
-                showNumLtoR(1,lFL1[row-1],BlFL1[row], randint(0, 9), segmentClock1, segmentData1, segmentLatch1, mode)
-                showNumLtoR(2,lFL2[row-1],BlFL2[row], randint(0, 9), segmentClock2, segmentData2, segmentLatch2, mode)
-                showNumLtoR(3,lFL3[row-1],BlFL3[row], randint(0, 9), segmentClock3, segmentData3, segmentLatch3, mode)
-                showNumLtoR(4,lFL4[row-1],BlFL4[row], randint(0, 9), segmentClock4, segmentData4, segmentLatch4, mode)
+                showNumLtoR(1,lFL1[row-1],BlFL1[row], int(now/3)+11, segmentClock1, segmentData1, segmentLatch1, mode)
+                showNumLtoR(2,lFL2[row-1],BlFL2[row], int(now/3)+11, segmentClock2, segmentData2, segmentLatch2, mode)
+                showNumLtoR(3,lFL3[row-1],BlFL3[row], int(now/3)+11, segmentClock3, segmentData3, segmentLatch3, mode)
+                showNumLtoR(4,lFL4[row-1],BlFL4[row], int(now/3)+11, segmentClock4, segmentData4, segmentLatch4, mode)
                 time.sleep(0.05)
 
 

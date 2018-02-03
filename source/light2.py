@@ -23,7 +23,6 @@ while True:
     sc2.reset(i,1)
     i = i+1
     i = i%10
-    #print(i)
     sc2.starShine(10)
     """
     data = conn.recv(1024)
