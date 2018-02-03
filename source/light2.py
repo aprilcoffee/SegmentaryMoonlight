@@ -36,7 +36,7 @@ while True:
     sc2.reset(i+1,1)
     time.sleep(0.3)
     """
-    #sc.showTime()
+    #sc2.showTime()
     
     #sc.showLeftToRight()
     
