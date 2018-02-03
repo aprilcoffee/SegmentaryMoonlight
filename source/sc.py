@@ -94,6 +94,26 @@ def postNumber(number, decimal, clock, data):
     g = 1 << 2
     dp = 1 << 7
     segments = 0
+    """
+    if number==1:
+        segments = a
+    elif number==2:
+        segments = b
+    elif number==3:
+        segments = c
+    elif number==4:
+        segments = d
+    elif number==5:
+        segments = e
+    elif number==6:
+        segments = f
+    elif number==7:
+        segments = g
+    elif number==8:
+        segments = dp
+    elif number==9:
+        segments = 0
+    """
     if number == 1:
         segments = b | c
     elif number == 2:
@@ -114,6 +134,7 @@ def postNumber(number, decimal, clock, data):
         segments = a | b | c | d | f | g
     elif number == 0:
         segments = a | b | c | d | e | f
+    
     elif number > 10:
         s = random.sample(range(0,9),number%10)
         for i in s:
@@ -122,8 +143,10 @@ def postNumber(number, decimal, clock, data):
             segments = segments | flag
     elif number == 10:
         segments = 0
+    
     if(decimal):
         segments |= dp
+    
     # clock these bits out to the drivers
     n = 0
     while n < 8:
@@ -155,10 +178,10 @@ def showNumWithLatch(value, decimal, numbersToRun, clock, data, latch):
 
 
 def reset(num, decimal):
-    showNumWithLatch(num, decimal, 14, segmentClock1, segmentData1, segmentLatch1)
-    showNumWithLatch(num, decimal, 14, segmentClock2, segmentData2, segmentLatch2)
-    showNumWithLatch(num, decimal, 14, segmentClock3, segmentData3, segmentLatch3)
-    showNumWithLatch(num, decimal, 14, segmentClock4, segmentData4, segmentLatch4)
+    showNumWithLatch(num, decimal, 1, segmentClock1, segmentData1, segmentLatch1)
+    showNumWithLatch(num, decimal, 1, segmentClock2, segmentData2, segmentLatch2)
+    showNumWithLatch(num, decimal, 1, segmentClock3, segmentData3, segmentLatch3)
+    showNumWithLatch(num, decimal, 1, segmentClock4, segmentData4, segmentLatch4)
 
 
 def blowShow(value, decimal, numbersToRun, clock, data, latch):
@@ -229,7 +252,7 @@ def leftToRight(mode):
     if mode == 0:
         randTime = 32
     elif mode==1:
-        randTime = 20
+        randTime = 32
     elif mode == 3:
         randTime = 1
     elif mode == 4:
@@ -240,16 +263,16 @@ def leftToRight(mode):
     for row in range(1, 18):
         for now in range(0, randTime):
             if row > 0:
-                showNumLtoR(1,lFL1[row-1],BlFL1[row], int(now/3)+11, segmentClock1, segmentData1, segmentLatch1, mode)
-                showNumLtoR(2,lFL2[row-1],BlFL2[row], int(now/3)+11, segmentClock2, segmentData2, segmentLatch2, mode)
-                showNumLtoR(3,lFL3[row-1],BlFL3[row], int(now/3)+11, segmentClock3, segmentData3, segmentLatch3, mode)
-                showNumLtoR(4,lFL4[row-1],BlFL4[row], int(now/3)+11, segmentClock4, segmentData4, segmentLatch4, mode)
+                showNumLtoR(1,lFL1[row-1],BlFL1[row], int(now/4)+11, segmentClock1, segmentData1, segmentLatch1, mode)
+                showNumLtoR(2,lFL2[row-1],BlFL2[row], int(now/4)+11, segmentClock2, segmentData2, segmentLatch2, mode)
+                showNumLtoR(3,lFL3[row-1],BlFL3[row], int(now/4)+11, segmentClock3, segmentData3, segmentLatch3, mode)
+                showNumLtoR(4,lFL4[row-1],BlFL4[row], int(now/4)+11, segmentClock4, segmentData4, segmentLatch4, mode)
                 time.sleep(0.05)
 
 
 def starShine(duration):
     for i in range(0, duration*10):
-        showNumber = 10
+        showNumber = 8
         showNumWithLatch(showNumber, randint(0, 2), 4,
                 segmentClock1, segmentData1, segmentLatch1)
         showNumWithLatch(showNumber, randint(0, 2), 4,
@@ -299,13 +322,9 @@ def showLeftToRight():
     for i in range(0,1):
         leftToRight(0)  # 0 light to right
         reset(8, 1)
-        for k in range(0,5):
-            leftToRight(3)
-        leftToRight(1)  # 1 dark to right
-        for k in range(0,5):
-            leftToRight(4)
+        time.sleep(5)
         starShine(15)
-        leftToRight(2)  # 2 lights off
+        leftToRight(1)  # 2 lights off
         reset(10,0)
         time.sleep(3)
 

@@ -20,11 +20,11 @@ conn,addr = s.accept()
 i = 0
 while True:
     
-    sc.reset(i,1)
+    #sc.reset(i+1,1)
     i=i+1
-    i=i%10
+    i=i%9
     #time.sleep(0.2)
-    time.sleep(0.5)
+    time.sleep(0.05)
     """
     data = conn.recv(1024)
     if data:
@@ -45,5 +45,5 @@ while True:
         i = 5
         sc.showLeftToRight()
     """
-    #sc.showLeftToRight()
+    sc.showLeftToRight()
 conn.close()
