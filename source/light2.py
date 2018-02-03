@@ -24,7 +24,7 @@ while True:
     i = i+1
     i = i%10
     time.sleep(0.5)
-    #sc2.starShine(10)
+    sc2.starShine(10)
     """
     data = conn.recv(1024)
     if data:

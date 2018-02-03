@@ -23,8 +23,8 @@ while True:
     sc.reset(i,1)
     i=i+1
     i=i%10
+    #time.sleep(0.2)
     time.sleep(0.5)
-    #time.sleep(0.5)
     """
     data = conn.recv(1024)
     if data:
