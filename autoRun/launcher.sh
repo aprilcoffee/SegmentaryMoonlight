@@ -4,12 +4,8 @@
 
 cd /
 cd /home/pi/Desktop/SegmentaryMoonlight/autoRun
-<<<<<<< HEAD
-./server.sh #&
-=======
-./server.sh 
->>>>>>> 3d7d57ef51814c130c15dfccf0b3db310f1c5b9b
-#./sound.sh &
-#./light.sh 
+./server.sh & 
+./sound.sh &
+./light.sh 
 cd ..
 cd /
