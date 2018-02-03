@@ -240,7 +240,7 @@ def leftToRight(mode):
                 showNumLtoR(2,lFL2[row-1],BlFL2[row], randint(0, 9), segmentClock2, segmentData2, segmentLatch2, mode)
                 showNumLtoR(3,lFL3[row-1],BlFL3[row], randint(0, 9), segmentClock3, segmentData3, segmentLatch3, mode)
                 showNumLtoR(4,lFL4[row-1],BlFL4[row], randint(0, 9), segmentClock4, segmentData4, segmentLatch4, mode)
-                time.sleep(1)
+                time.sleep(0.05)
 
 
 def starShine(duration):
@@ -292,7 +292,7 @@ def showTime():
     time.sleep(0.1)
 
 def showLeftToRight():
-    for i in range(0,3):
+    for i in range(0,1):
         leftToRight(0)  # 0 light to right
         reset(8, 1)
         for k in range(0,5):

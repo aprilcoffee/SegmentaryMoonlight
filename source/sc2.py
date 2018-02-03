@@ -147,7 +147,7 @@ def reset(num, decimal):
     showNumWithLatch(num, decimal, 12, segmentClock2, segmentData2, segmentLatch2)
     showNumWithLatch(num, decimal, 13, segmentClock3, segmentData3, segmentLatch3)
     showNumWithLatch(num, decimal, 13, segmentClock4, segmentData4, segmentLatch4)
-    showNumWithLatch(num, decimal, 16, segmentClock5, segmentData5, segmentLatch5)
+    showNumWithLatch(num, decimal, 6, segmentClock5, segmentData5, segmentLatch5)
 
 
 def blowShow(value, decimal, numbersToRun, clock, data, latch):
@@ -254,35 +254,18 @@ def showTime():
     dateNow = date_time.date()
     timeNow = date_time.time()
 
-    GPIO.output(segmentLatch2, GPIO.LOW)
-    showNum(int(timeNow.hour / 10), 0, 1, segmentClock2,segmentData2, segmentLatch2)
-    showNum(10, 0, 4, segmentClock2, segmentData2, segmentLatch2)
-    showNum(timeNow.hour % 10, 1, 1, segmentClock2,segmentData2, segmentLatch2)
-    showNum(10, 0, 8, segmentClock2, segmentData2, segmentLatch2)
-    GPIO.output(segmentLatch2, GPIO.HIGH)
+    GPIO.output(segmentLatch5, GPIO.LOW)
+    showNum(timeNow.second%10, 1, 1, segmentClock5,segmentData5, segmentLatch5)
+    showNum(int(timeNow.second/10), 0, 1, segmentClock5,segmentData5,segmentLatch5)
 
-    GPIO.output(segmentLatch1, GPIO.LOW)
-    showNum(10, 0, 6, segmentClock1, segmentData1, segmentLatch1)
-    showNum(int(timeNow.minute / 10), 0, 1, segmentClock1,segmentData1, segmentLatch1)
-    showNum(timeNow.minute % 10, 1, 1, segmentClock1,segmentData1, segmentLatch1)
-    showNum(10, 0, 6, segmentClock1, segmentData1, segmentLatch1)
-    GPIO.output(segmentLatch1, GPIO.HIGH)
+    showNum(timeNow.minute % 10, 1, 1, segmentClock5,segmentData5, segmentLatch5)
+    showNum(int(timeNow.minute / 10), 0, 1, segmentClock5,segmentData5, segmentLatch5)
+    
+    showNum(int(timeNow.hour / 10), 0, 1, segmentClock5,segmentData5, segmentLatch5)
+    showNum(timeNow.hour % 10, 1, 1, segmentClock5,segmentData5, segmentLatch5)
 
-    GPIO.output(segmentLatch4, GPIO.LOW)
-    showNum(10, 0, 10, segmentClock4, segmentData4, segmentLatch4)
-    showNum(int(timeNow.second/10), 0, 1, segmentClock4,segmentData4,segmentLatch4)
-    showNum(10, 0, 2, segmentClock4, segmentData4, segmentLatch4)
-    showNum(timeNow.second%10, 1, 1, segmentClock4,segmentData4, segmentLatch4)
-    GPIO.output(segmentLatch4, GPIO.HIGH)
-
-    GPIO.output(segmentLatch3, GPIO.LOW)
-    showNum(10, 0, 10, segmentClock3, segmentData3, segmentLatch3)
-    showNum(int(timeNow.microsecond/100)%10, 0, 1, segmentClock3, segmentData3, segmentLatch3)
-    showNum(timeNow.microsecond%10, 1, 1, segmentClock3, segmentData3, segmentLatch3)
-    showNum(10, 0, 2, segmentClock3, segmentData3, segmentLatch3)
-    GPIO.output(segmentLatch3, GPIO.HIGH)
-
-    time.sleep(0.1)
+    GPIO.output(segmentLatch5, GPIO.HIGH)
+    time.sleep(0.01)
 
 def showLeftToRight():
     for i in range(0,3):
