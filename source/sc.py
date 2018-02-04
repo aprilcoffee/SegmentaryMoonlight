@@ -250,9 +250,9 @@ def showNumLtoR(sec,lastRow, row, count, clock, data, latch, mode):
 
 def leftToRight(mode):
     if mode == 0:
-        randTime = 32
+        randTime = 80
     elif mode==1:
-        randTime = 32
+        randTime = 80
     elif mode == 3:
         randTime = 1
     elif mode == 4:
@@ -263,11 +263,11 @@ def leftToRight(mode):
     for row in range(17, 0):
         for now in range(0, randTime):
             if row > 0:
-                showNumLtoR(1,lFL1[row+1],BlFL1[row], int(now/4)+11, segmentClock1, segmentData1, segmentLatch1, mode)
-                showNumLtoR(2,lFL2[row+1],BlFL2[row], int(now/4)+11, segmentClock2, segmentData2, segmentLatch2, mode)
-                showNumLtoR(3,lFL3[row+1],BlFL3[row], int(now/4)+11, segmentClock3, segmentData3, segmentLatch3, mode)
-                showNumLtoR(4,lFL4[row+1],BlFL4[row], int(now/4)+11, segmentClock4, segmentData4, segmentLatch4, mode)
-                time.sleep(0.05)
+                showNumLtoR(1,lFL1[row+1],BlFL1[row], int(now/10)+11, segmentClock1, segmentData1, segmentLatch1, mode)
+                showNumLtoR(2,lFL2[row+1],BlFL2[row], int(now/10)+11, segmentClock2, segmentData2, segmentLatch2, mode)
+                showNumLtoR(3,lFL3[row+1],BlFL3[row], int(now/10)+11, segmentClock3, segmentData3, segmentLatch3, mode)
+                showNumLtoR(4,lFL4[row+1],BlFL4[row], int(now/10)+11, segmentClock4, segmentData4, segmentLatch4, mode)
+                time.sleep(0.01)
 
 
 def starShine(duration):
