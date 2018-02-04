@@ -18,16 +18,16 @@ i = 0
 
 while True:
     
-    data = conn.recv(1024)
-    if data:
-        print("Receive Data: %s" % str(data.decode('utf-8')))
-        data = "receiced"
-        time.sleep(3)
-        conn.sendall(data.encode('utf-8'))
-    else:
-        conn,addr = s.accept()
-        print("still waiting")
-    time.sleep(0.5)   
+    #data = conn.recv(1024)
+    #if data:
+        #print("Receive Data: %s" % str(data.decode('utf-8')))
+    data = "receiced"
+    time.sleep(0.5)
+    conn.sendall(data.encode('utf-8'))
+    #else:
+    #conn,addr = s.accept()
+    #    print("still waiting")
+    #time.sleep(0.5)   
     #sc.showLeftToRight()
     
 conn.close()
