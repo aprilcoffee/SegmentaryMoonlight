@@ -138,7 +138,6 @@ def postNumber(number, decimal, clock, data):
     elif number > 10:
         s = random.sample(range(0,9),number%10)
         for i in s:
-            print(s)
             flag = 1 << i
             segments = segments | flag
     elif number == 10:
