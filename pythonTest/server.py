@@ -15,14 +15,15 @@ s.bind((host,port))
 s.listen(5)
 conn,addr = s.accept()
 i = 0
-s.settimeout(3)
-
 
 while True:
     
     data = conn.recv(1024)
     if data:
         print("Receive Data: %s" % str(data.decode('utf-8')))
+        data = "receiced"
+        time.sleep(3)
+        conn.sendall(data.encode('utf-8'))
     else:
         conn,addr = s.accept()
         print("still waiting")

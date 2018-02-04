@@ -24,7 +24,6 @@ while True:
     i=i+1
     i=i%9
     #time.sleep(0.2)
-    time.sleep(0.05)
     """
     data = conn.recv(1024)
     if data:
