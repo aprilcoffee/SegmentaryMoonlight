@@ -271,7 +271,29 @@ def showTime():
     
     GPIO.output(segmentLatch5, GPIO.HIGH)
     time.sleep(0.01)
+def countDown():
+    sec = 59
+    millisec = 99
+    microsec = 99
+    while sec > 0:
+        print ("%d:%d:%d" % (sec,millisec,microsec))
+    
+        GPIO.output(segmentLatch5, GPIO.LOW)
+        showNum(randint(0,9), 0, 1, segmentClock5,segmentData5, segmentLatch5)
+        showNum(randint(0,9), 0, 1, segmentClock5,segmentData5,segmentLatch5)
 
+        showNum(millisec%10, 0, 1, segmentClock5,segmentData5, segmentLatch5)
+        showNum(int(millisec / 10), 0, 1, segmentClock5,segmentData5, segmentLatch5)
+    
+        showNum(sec % 10,0, 1, segmentClock5,segmentData5, segmentLatch5)
+        showNum(int(sec / 10),0, 1, segmentClock5,segmentData5, segmentLatch5)
+        GPIO.output(segmentLatch5, GPIO.HIGH)
+        millisec = millisec - 1
+        if millisec < 0:
+            millisec = 59
+            sec = sec - 1
+        time.sleep(0.01)
+    print("out")    
 def showLeftToRight():
     for i in range(0,3):
         leftToRight(0)  # 0 light to right

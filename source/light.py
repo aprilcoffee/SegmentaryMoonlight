@@ -18,11 +18,12 @@ s.listen(5)
 conn,addr = s.accept()
 """
 i = 0
+sc.reset(10,0)
 while True:
     
     #sc.reset(i+1,1)
-    i=i+1
-    i=i%9
+    #i=i+1
+    #i=i%9
     #time.sleep(0.2)
     """
     data = conn.recv(1024)

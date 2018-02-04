@@ -177,10 +177,10 @@ def showNumWithLatch(value, decimal, numbersToRun, clock, data, latch):
 
 
 def reset(num, decimal):
-    showNumWithLatch(num, decimal, 1, segmentClock1, segmentData1, segmentLatch1)
-    showNumWithLatch(num, decimal, 1, segmentClock2, segmentData2, segmentLatch2)
-    showNumWithLatch(num, decimal, 1, segmentClock3, segmentData3, segmentLatch3)
-    showNumWithLatch(num, decimal, 1, segmentClock4, segmentData4, segmentLatch4)
+    showNumWithLatch(num, decimal, 14, segmentClock1, segmentData1, segmentLatch1)
+    showNumWithLatch(num, decimal, 14, segmentClock2, segmentData2, segmentLatch2)
+    showNumWithLatch(num, decimal, 14, segmentClock3, segmentData3, segmentLatch3)
+    showNumWithLatch(num, decimal, 14, segmentClock4, segmentData4, segmentLatch4)
 
 
 def blowShow(value, decimal, numbersToRun, clock, data, latch):
@@ -207,9 +207,12 @@ def showNumLtoR(sec,lastRow, row, count, clock, data, latch, mode):
     GPIO.output(latch, GPIO.LOW)
     for i in range(0, 14):
         check = -1
+        flagForLastRow = 0
         for element in lastRow:
-            if element != i:
-                check = 2
+            if element == i:
+                flagForLastRow = 1
+        if flagForLastRow == 0:
+            check = 2
         for element in row:
             if element == i:
                 check = 1
@@ -226,7 +229,7 @@ def showNumLtoR(sec,lastRow, row, count, clock, data, latch, mode):
             if check == 1 :
                 postNumber(count, 1, clock, data)
             elif check==2:
-                postNumber(10,1,clock,data)
+                postNumber(10,0,clock,data)
             else:
                 postNumber(8, 1, clock, data)
 
@@ -248,10 +251,16 @@ def showNumLtoR(sec,lastRow, row, count, clock, data, latch, mode):
     GPIO.output(latch, GPIO.HIGH)
 
 def leftToRight(mode):
-    if mode == 0:
-        randTime = 80
-    elif mode==1:
-        randTime = 80
+    numberOrNot = 0    #1for Not 
+
+    if mode == 0 and numberOrNot==1:
+        randTime = 160
+    elif mode == 0 and numberOrNot==0:
+        randTime = 24
+    elif mode==1 and numberOrNot==1:
+        randTime = 160
+    elif mode==1 and numberOrNot==0:
+        randTime = 24
     elif mode == 3:
         randTime = 1
     elif mode == 4:
@@ -259,15 +268,21 @@ def leftToRight(mode):
     else:
         randTime = 8
         
-    for row in range(17, 0):
+    for row in range(17,-1,-1):
+        k = row
         for now in range(0, randTime):
-            if row > 0:
-                showNumLtoR(1,lFL1[row+1],BlFL1[row], int(now/10)+11, segmentClock1, segmentData1, segmentLatch1, mode)
-                showNumLtoR(2,lFL2[row+1],BlFL2[row], int(now/10)+11, segmentClock2, segmentData2, segmentLatch2, mode)
-                showNumLtoR(3,lFL3[row+1],BlFL3[row], int(now/10)+11, segmentClock3, segmentData3, segmentLatch3, mode)
-                showNumLtoR(4,lFL4[row+1],BlFL4[row], int(now/10)+11, segmentClock4, segmentData4, segmentLatch4, mode)
-                time.sleep(0.01)
-
+            if numberOrNot ==1:
+                showNumLtoR(1,lFL1[k],BlFL1[row], int(now/int(randTime/8))+11, segmentClock1, segmentData1, segmentLatch1, mode)
+                showNumLtoR(2,lFL2[k],BlFL2[row], int(now/int(randTime/8))+11, segmentClock2, segmentData2, segmentLatch2, mode)
+                showNumLtoR(3,lFL3[k],BlFL3[row], int(now/int(randTime/8))+11, segmentClock3, segmentData3, segmentLatch3, mode)
+                showNumLtoR(4,lFL4[k],BlFL4[row], int(now/int(randTime/8))+11, segmentClock4, segmentData4, segmentLatch4, mode)
+                time.sleep(0.15)
+            else:
+                showNumLtoR(1,lFL1[k],BlFL1[row], randint(0,9), segmentClock1, segmentData1, segmentLatch1, mode)
+                showNumLtoR(2,lFL2[k],BlFL2[row], randint(0,9), segmentClock2, segmentData2, segmentLatch2, mode)
+                showNumLtoR(3,lFL3[k],BlFL3[row], randint(0,9), segmentClock3, segmentData3, segmentLatch3, mode)
+                showNumLtoR(4,lFL4[k],BlFL4[row], randint(0,9), segmentClock4, segmentData4, segmentLatch4, mode)
+                time.sleep(1)
 
 def starShine(duration):
     for i in range(0, duration*10):
@@ -318,12 +333,17 @@ def showTime():
     time.sleep(0.1)
 
 def showLeftToRight():
+    reset(10,0)
     for i in range(0,1):
+        reset(10,0)
+        time.sleep(4)
         leftToRight(0)  # 0 light to right
         reset(8, 1)
-        time.sleep(5)
-        starShine(15)
+        time.sleep(10)
+        starShine(20)
+        reset(8,1)
+        time.sleep(10)
         leftToRight(1)  # 2 lights off
         reset(10,0)
-        time.sleep(3)
+        time.sleep(4)
 

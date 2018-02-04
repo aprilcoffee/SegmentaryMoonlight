@@ -6,7 +6,7 @@ import sc2
 import socket 
 
 sc2.init()
-
+"""
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
 print("Socket Created")
@@ -15,15 +15,15 @@ host = '10.254.29.136'
 port = 1688
 s.bind((host,port))
 s.listen(5)
-
+"""
 i = 0
 while True:
     
-    sc2.reset(i,1)
-    i = i+1
-    i = i%10
-    sc2.starShine(10)
-    
+    #sc2.reset(i,1)
+    #i = i+1
+    #i = i%10
+    #sc2.starShine(10)
+    """
     #conn,addr = s.accept()
     data = conn.recv(1024)
     if data:
@@ -36,6 +36,7 @@ while True:
     time.sleep(0.3)
     """
     #sc2.showTime()
+    sc2.countDown()
     #time.sleep(0.5)
     #sc.showLeftToRight()
     
