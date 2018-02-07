@@ -350,14 +350,14 @@ def showTime():
 def showLeftToRight():
     reset(10,0)
     for i in range(0,1):
-        #reset(10,0)
-        #time.sleep(4)
-        #leftToRight(0)  # 0 light to right
-        #reset(8, 1)
-        #time.sleep(10)
-        #starShine(20)
+        reset(10,0)
+        time.sleep(4)
+        leftToRight(0)  # 0 light to right
+        reset(8, 1)
+        time.sleep(10)
+        starShine(20)
         reset(8,1)
-        #time.sleep(10)
+        time.sleep(10)
         leftToRight(1)  # 2 lights off
         reset(10,0)
         time.sleep(4)
