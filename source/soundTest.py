@@ -9,7 +9,7 @@ import socket
 sc.init()
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
-host = '172.20.10.5'
+host = '10.1.1.10'
 port = 1688
 s.bind((host,port))
 s.listen(5)
