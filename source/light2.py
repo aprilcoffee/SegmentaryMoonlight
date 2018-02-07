@@ -17,8 +17,8 @@ s.bind((host,port))
 s.listen(5)
 """
 i = 0
+mins = 0
 while True:
-    
     #sc2.reset(i,1)
     #i = i+1
     #i = i%10
@@ -35,8 +35,10 @@ while True:
     sc2.reset(i+1,1)
     time.sleep(0.3)
     """
-    #sc2.showTime()
-    sc2.countDown()
+    if mins == 0
+        sc2.showTime()
+    else:
+        sc2.countDown()
     #time.sleep(0.5)
     #sc.showLeftToRight()
     

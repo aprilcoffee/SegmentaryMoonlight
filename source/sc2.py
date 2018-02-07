@@ -271,6 +271,7 @@ def showTime():
     
     GPIO.output(segmentLatch5, GPIO.HIGH)
     time.sleep(0.01)
+
 def countDown():
     sec = 59
     millisec = 99
