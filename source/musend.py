@@ -203,5 +203,6 @@ while True:
         time.sleep(2071)
         data = "end"
         mode = 0
+        playing = 0
         s.sendall(data.encode('utf-8'))
 conn.close()

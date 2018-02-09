@@ -15,15 +15,19 @@ s.bind((host,port))
 s.listen(5)
 sc.reset(10,0)
 conn,addr = s.accept()
+print(conn)
+print(addr)
 while True:
     data = conn.recv(1024)
     if data:
+        print(data)
         recvdata = str(data.decode('utf-8'))
         if recvdata == "end":
             mu.showLeftToRight()
             conn.send(stringing.encode('utf-8'))
             stringing = "B"
         else:
+            print("hi")
             mu.rhythem()
 
 
