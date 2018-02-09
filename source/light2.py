@@ -10,9 +10,9 @@ sc2.init()
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 print("Socket Created")
 
-host = '10.1.1.10'
+host = '10.1.1.11'
 port = 12345
-time.sleep(3)
+time.sleep(5)
 s.connect((host,port))
 
 i = 0
