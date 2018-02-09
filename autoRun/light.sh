@@ -4,6 +4,6 @@
 
 cd /
 cd /home/pi/Desktop/SegmentaryMoonlight/socketAndSound
-sudo python client.py
+sudo python musend.py
 cd ..
 cd /

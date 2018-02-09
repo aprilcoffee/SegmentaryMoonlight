@@ -5,7 +5,5 @@
 cd /
 cd /home/pi/Desktop/SegmentaryMoonlight/autoRun
 ./server.sh 
-#./sound.sh &
-#./light.sh 
 cd ..
 cd /
