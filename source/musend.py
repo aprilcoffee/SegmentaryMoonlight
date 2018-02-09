@@ -21,7 +21,7 @@ mode = 2
 playing = 0 
 while True:
     if mode == 0:
-        data = conn.recv(1024)
+        data = s.recv(1024)
         if data:
             print("Receive Data: %s" % str(data.decode('utf-8')))
             mode=mode+1
@@ -196,7 +196,7 @@ while True:
         s.sendall(data.encode('utf-8'))
         time.sleep(8.319)
         s.sendall(data.encode('utf-8'))
-        time.sleep(2.027)
+        time.sleep(5.027)
         data = "end"
         mode = 0
         playing = 0

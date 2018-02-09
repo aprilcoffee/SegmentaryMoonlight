@@ -24,11 +24,11 @@ while True:
         recvdata = str(data.decode('utf-8'))
         if recvdata == "end":
             mu.showLeftToRight()
-            conn.send(stringing.encode('utf-8'))
             stringing = "B"
+            conn.send(stringing.encode('utf-8'))
         else:
             print("hi")
-            mu.rhythem()
+            mu.rhythm()
 
 
 conn.close()
