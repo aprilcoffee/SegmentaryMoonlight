@@ -20,8 +20,8 @@ while True:
         recvdata = str(data.decode('utf-8'))
         if recvdata == "end":
             mu.showLeftToRight()
-            stringing = "B"
             conn.send(stringing.encode('utf-8'))
+            stringing = "B"
         else:
             mu.rhythem()
 
