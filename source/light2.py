@@ -36,13 +36,13 @@ while True:
         data = conn.recv(1024)
         if data:
             print("Receive Data: %s" % str(data.decode('utf-8')))
-            mode++
+            mode=mode+1
     elif mode ==1:
         sc2.countDown()
-        mode++
-    else mode ==2:
-        if playing = 0:
-            player = subprocess.Popen(["omxplayer", "House.mp3", "-ss", "0"], stdin=subprocess.PIPE, st    dout=subprocess.PIPE, stderr=subprocess.PIPE)
+        mode=mode+1
+    elif mode ==2:
+        if playing == 0:
+            player = subprocess.Popen(["omxplayer", "House.mp3", "-ss", "0"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             playing = 1
         
         time.sleep(217)
