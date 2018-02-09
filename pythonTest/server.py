@@ -9,7 +9,7 @@ s.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
 
 print("Socket Created")
 
-host = '127.0.0.1'
+host = '0.0.0.0'
 port = 1688
 s.bind((host,port))
 s.listen(5)

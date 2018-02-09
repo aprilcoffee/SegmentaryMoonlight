@@ -107,10 +107,19 @@ def postNumber(number, decimal, clock, data):
         segments = a | b | c | d | f | g
     elif number == 0:
         segments = a | b | c | d | e | f
-    else:
+
+
+    elif number > 10:
+        s = random.sample(range(0,9),number%10)
+        for i in s:
+            flag = 1 << i
+            segments = segments | flag
+    elif number == 10:
         segments = 0
+    
     if(decimal):
         segments |= dp
+
     # clock these bits out to the drivers
     n = 0
     while n < 8:
@@ -147,6 +156,8 @@ def reset(num, decimal):
     showNumWithLatch(num, decimal, 13, segmentClock3, segmentData3, segmentLatch3)
     showNumWithLatch(num, decimal, 13, segmentClock4, segmentData4, segmentLatch4)
     #showNumWithLatch(num, decimal, 6, segmentClock5, segmentData5, segmentLatch5)
+def resetlight(num, decimal):
+    showNumWithLatch(num, decimal, 6, segmentClock5, segmentData5, segmentLatch5)
 
 def blowShow(value, decimal, numbersToRun, clock, data, latch):
     # reset(10,0)
