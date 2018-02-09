@@ -9,13 +9,14 @@ sc.init()
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
-host = '10.1.1.13'
-port = 1688
+host = '0.0.0.0'
+port = 12345
 s.bind((host,port))
 s.listen(5)
 sc.reset(10,0)
+conn,addr = s.accept()
 while True:
-    
+    data = conn.recv(1024)
     if data:
         recvdata = str(data.decode('utf-8'))
         if recvdata == "end":
@@ -25,7 +26,5 @@ while True:
         else:
             mu.rhythem()
 
-    else:
-        conn,addr = s.accept()
 
 conn.close()
