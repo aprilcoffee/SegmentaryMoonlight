@@ -252,7 +252,6 @@ def showTime():
     date_time = datetime.datetime.now()
     dateNow = date_time.date()
     timeNow = date_time.time()
-    print(timeNow)
     if timeNow.second % 2==0:
         de = 1
     else:

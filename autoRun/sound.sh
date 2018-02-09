@@ -4,6 +4,6 @@
 
 cd /
 cd /home/pi/Desktop/SegmentaryMoonlight/socketAndSound
-sudo omxplayer 31mp.mp3
+sudo omxplayer House.mp3
 cd ..
 cd /

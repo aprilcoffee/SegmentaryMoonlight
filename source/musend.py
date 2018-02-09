@@ -4,7 +4,7 @@ import datetime
 from random import randint
 import sc2
 import socket
-
+import subprocess
 sc2.init()
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -36,10 +36,14 @@ while True:
         sc2.countDown()
         mode++
     else mode ==2:
+        if playing = 0:
+            player = subprocess.Popen(["omxplayer", "House.mp3", "-ss", "0"], stdin=subprocess.PIPE, st    dout=subprocess.PIPE, stderr=subprocess.PIPE)
+            playing = 1
+
         time.sleep(290)
-        s.sendall(data.encode('utf-8')
+        s.sendall(data.encode('utf-8'))
         time.sleep(98)
-        s.sendall(data.encode('utf-8')
+        s.sendall(data.encode('utf-8'))
         time.sleep(1594)
         s.sendall(data.encode('utf-8')
         time.sleep(374)
@@ -212,5 +216,6 @@ while True:
         s.sendall(data.encode('utf-8')
         time.sleep(374)
         s.sendall(data.encode('utf-8')
-
+        time.sleep(1000)
+        s.sendall(data.encode('utf-8)
 conn.close()
