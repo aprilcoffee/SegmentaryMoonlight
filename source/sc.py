@@ -277,7 +277,7 @@ def leftToRight(mode):
                     showNumLtoR(2,lFL2[k],BlFL2[row], int(now/int(randTime/8))+11, segmentClock2, segmentData2, segmentLatch2, mode)
                     showNumLtoR(3,lFL3[k],BlFL3[row], int(now/int(randTime/8))+11, segmentClock3, segmentData3, segmentLatch3, mode)
                     showNumLtoR(4,lFL4[k],BlFL4[row], int(now/int(randTime/8))+11, segmentClock4, segmentData4, segmentLatch4, mode)
-                    time.sleep(0.15)
+                    time.sleep(0.075)
                 else:
                     showNumLtoR(1,lFL1[k],BlFL1[row], randint(0,9), segmentClock1, segmentData1, segmentLatch1, mode)
                     showNumLtoR(2,lFL2[k],BlFL2[row], randint(0,9), segmentClock2, segmentData2, segmentLatch2, mode)
