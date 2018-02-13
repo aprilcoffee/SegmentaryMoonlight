@@ -5,6 +5,8 @@ from random import randint
 import sc2
 import socket
 import subprocess
+import os
+import signal
 sc2.init()
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -30,13 +32,18 @@ while True:
     elif mode ==2:
         data = "Hi"
         if playing == 0:
-            player = subprocess.Popen(["omxplayer", "House.mp3", "-ss", "0"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            #pro = subprocess.Popen(["omxplayer", "House.mp3", "-ss", "0"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, preexec_fn=os.setsid)
+            #pro= subprocess.Popen(["omxplayer", "House.mp3", "-ss", "0"]    , stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            pro = subprocess.Popen(['omxplayer', '-o', 'local', 'House.mp3'])
             playing = 1
         time.sleep(0.145)
         s.sendall(data.encode('utf-8'))
         time.sleep(0.168)
         s.sendall(data.encode('utf-8'))
         time.sleep(1.514)
+        #pro.kill()
+        #pro = subprocess.Popen(['omxplayer', '-i', 'House.mp3'])
+
         s.sendall(data.encode('utf-8'))
         time.sleep(0.364)
         s.sendall(data.encode('utf-8'))
@@ -200,5 +207,8 @@ while True:
         data = "end"
         mode = 0
         playing = 0
+        #os.killpg(os.getpgid(pro.pid), signal.SIGTERM)
+        #pro.kill()
+        pro = subprocess.Popen(['omxplayer', '-i', 'House.mp3'])
         s.sendall(data.encode('utf-8'))
 conn.close()
