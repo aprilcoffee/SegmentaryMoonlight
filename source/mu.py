@@ -213,7 +213,7 @@ def reset(num, decimal):
 def rhythm():
     flag = randint(0,6)
     lightFlag = randint(13,18)
-    blowShow(lightFlag,0,0,randint(0,6))
+    blowShow(lightFlag,0,0,randint(0,9))
     
 def blowShow(value, decimal, numbersToRun, which):
     # reset(10,0)
@@ -299,7 +299,8 @@ def blowShow(value, decimal, numbersToRun, which):
         showNumWithLatchaSeg(value,0, 4, day)
         showNumWithLatchaSeg(value,0, 4, day+2)
         time.sleep(0.05)
-
+    elif which == 8:
+        
     
 def showNumLtoR(sec,lastRow, row, count, clock, data, latch, mode):
     GPIO.output(latch, GPIO.LOW)
