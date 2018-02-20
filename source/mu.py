@@ -213,7 +213,7 @@ def reset(num, decimal):
 def rhythm():
     flag = randint(0,6)
     lightFlag = randint(13,18)
-    blowShow(lightFlag,0,0,randint(0,9))
+    blowShow(lightFlag,0,0,randint(0,10))
     
 def blowShow(value, decimal, numbersToRun, which):
     # reset(10,0)
@@ -235,13 +235,13 @@ def blowShow(value, decimal, numbersToRun, which):
         time.sleep(0.05)
         showNumWithLatchaSeg(value, 0, 4, which)    
         time.sleep(0.05)
+    
     elif which <= 5:
         day = 0
         if which == 4:
             day = 0
         elif which == 5:
             day = 2
-    
         showNumWithLatchaSeg(value, 3, 3, day)
         showNumWithLatchaSeg(value, 3, 3, day+1)
         time.sleep(0.05)
@@ -273,7 +273,6 @@ def blowShow(value, decimal, numbersToRun, which):
             day = 0
         elif which == 7:
             day = 1
-        
         showNumWithLatchaSeg(value, 3, 3, day)
         showNumWithLatchaSeg(value, 3, 3, day+2)
         time.sleep(0.05)
@@ -300,8 +299,75 @@ def blowShow(value, decimal, numbersToRun, which):
         showNumWithLatchaSeg(value,0, 4, day+2)
         time.sleep(0.05)
     elif which == 8:
-        
-    
+        showNumWithLatchaSeg(randint(0,10), 3, 3, 0)
+        showNumWithLatchaSeg(randint(0,10), 3, 3, 1)
+        showNumWithLatchaSeg(randint(0,10), 3, 3, 2)
+        showNumWithLatchaSeg(randint(0,10), 3, 3, 3)
+        time.sleep(0.05)
+        showNumWithLatchaSeg(randint(0,10), 3, 4, 0)
+        showNumWithLatchaSeg(randint(0,10), 3, 4, 1)
+        showNumWithLatchaSeg(randint(0,10), 3, 4, 2)
+        showNumWithLatchaSeg(randint(0,10), 3, 4, 3)
+        time.sleep(0.05)
+        showNumWithLatchaSeg(randint(0,10), 3, 3, 0)
+        showNumWithLatchaSeg(randint(0,10), 3, 3, 1)
+        showNumWithLatchaSeg(randint(0,10), 3, 3, 2)
+        showNumWithLatchaSeg(randint(0,10), 3, 3, 3)
+        time.sleep(0.05)
+        showNumWithLatchaSeg(randint(0,10), 3, 4, 0)
+        showNumWithLatchaSeg(randint(0,10), 3, 4, 1)
+        showNumWithLatchaSeg(randint(0,10), 3, 4, 2)
+        showNumWithLatchaSeg(randint(0,10), 3, 4, 3)
+        time.sleep(0.2)
+        value = 10
+        showNumWithLatchaSeg(10, 0, 3, 0)
+        showNumWithLatchaSeg(10, 0, 3, 1)
+        showNumWithLatchaSeg(10, 0, 3, 2)
+        showNumWithLatchaSeg(10, 0, 3, 3)
+        time.sleep(0.05)
+        showNumWithLatchaSeg(10, 0, 4, 0)
+        showNumWithLatchaSeg(10, 0, 4, 1)
+        showNumWithLatchaSeg(10, 0, 4, 2)
+        showNumWithLatchaSeg(10, 0, 4, 3)
+        time.sleep(0.05)
+        showNumWithLatchaSeg(10, 0, 3, 0)
+        showNumWithLatchaSeg(10, 0, 3, 1)
+        showNumWithLatchaSeg(10, 0, 3, 2)
+        showNumWithLatchaSeg(10, 0, 3, 3)
+        time.sleep(0.05)
+        showNumWithLatchaSeg(10, 0, 4, 0)
+        showNumWithLatchaSeg(10, 0, 4, 1)
+        showNumWithLatchaSeg(10, 0, 4, 2)
+        showNumWithLatchaSeg(10, 0, 4, 3)
+        time.sleep(0.05)
+    elif which <= 10:
+        if which == 9:
+            for row in range(17,-1,-1):
+                k = row
+                randTime = 16
+                for now in range(0, randTime):
+                    if numberOrNot ==1:
+                        showNumLtoR(1,lFL1[k],BlFL1[row], randint(0,10), segmentClock1, segmentData1, segmentLatch1, mode)
+                        showNumLtoR(2,lFL2[k],BlFL2[row], randint(0,10), segmentClock2, segmentData2, segmentLatch2, mode)
+                        showNumLtoR(3,lFL3[k],BlFL3[row], randint(0,10), segmentClock3, segmentData3, segmentLatch3, mode)
+                        showNumLtoR(4,lFL4[k],BlFL4[row], randint(0,10), segmentClock4, segmentData4, segmentLatch4, mode)
+                        time.sleep(0.01)
+            reset(10,0)
+            time.sleep(0.05)
+        elif which == 10:
+            for row in range(0,18):
+                k = row
+                randTime = 16
+                for now in range(0, randTime):
+                    if numberOrNot ==1:
+                        showNumLtoR(1,lFL1[k],BlFL1[row], randint(0,10), segmentClock1, segmentData1, segmentLatch1, mode)
+                        showNumLtoR(2,lFL2[k],BlFL2[row], randint(0,10), segmentClock2, segmentData2, segmentLatch2, mode)
+                        showNumLtoR(3,lFL3[k],BlFL3[row], randint(0,10), segmentClock3, segmentData3, segmentLatch3, mode)
+                        showNumLtoR(4,lFL4[k],BlFL4[row], randint(0,10), segmentClock4, segmentData4, segmentLatch4, mode)
+                        time.sleep(0.01)
+            reset(10,0)
+            time.sleep(0.05)
+
 def showNumLtoR(sec,lastRow, row, count, clock, data, latch, mode):
     GPIO.output(latch, GPIO.LOW)
     for i in range(0, 14):
